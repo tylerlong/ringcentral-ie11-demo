@@ -4,12 +4,20 @@
     "serve": "webpack serve --progress"
   },
   "dependencies": {
-    "@rc-ex/core": "^0.7.0"
+    "@rc-ex/authorize-uri": "^0.7.0",
+    "@rc-ex/core": "^0.7.0",
+    "@rc-ex/debug": "^0.7.0",
+    "@rc-ex/rcsdk": "^0.7.0",
+    "@rc-ex/ws": "^0.7.0",
+    "@ringcentral/sdk": "^4.4.1",
+    "html-webpack-plugin": "4.5.2",
+    "localforage": "^1.9.0"
   },
   "devDependencies": {
-    "dotenv-override-true": "^6.2.2",
-    "html-webpack-plugin": "^5.3.1",
-    "webpack": "^5.25.0",
+    "@babel/core": "^7.13.10",
+    "@babel/register": "^7.13.8",
+    "babel-loader": "^8.2.2",
+    "webpack": "4.46.0",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
   }
