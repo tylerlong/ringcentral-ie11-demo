@@ -1,8 +1,14 @@
 {
+  "license": "MIT",
+  "scripts": {
+    "serve": "webpack serve --progress"
+  },
   "dependencies": {
     "@rc-ex/core": "^0.7.0"
   },
   "devDependencies": {
+    "dotenv-override-true": "^6.2.2",
+    "html-webpack-plugin": "^5.3.1",
     "webpack": "^5.25.0",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
