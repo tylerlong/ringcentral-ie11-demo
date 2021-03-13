@@ -1,6 +1,7 @@
 const RingCentral = require('@rc-ex/core').default;
 const AuthorizeUriExtension = require('@rc-ex/authorize-uri').default;
 const localforage = require('localforage');
+const DebugExtension = require('@rc-ex/debug').default;
 
 const rc = new RingCentral({
   clientId: 'c8YTIvc5SPiUAaTZwUodZg',
@@ -18,7 +19,12 @@ const authorize = async code => {
 };
 
 const showGreetings = async () => {
-  alert('Hello guest!');
+  // @rc-ex/debug
+  const debugExtension = new DebugExtension();
+  await rc.installExtension(debugExtension);
+
+  const extInfo = await rc.restapi().account().extension().get();
+  alert(`Hello ${extInfo.name}!`);
 };
 
 const urlSearchParams = new URLSearchParams(
