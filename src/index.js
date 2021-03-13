@@ -1,4 +1,5 @@
 require('babel-polyfill');
+require('url-search-params-polyfill')
 const RingCentral = require('@rc-ex/core').default;
 const AuthorizeUriExtension = require('@rc-ex/authorize-uri').default;
 const localforage = require('localforage');
