@@ -1,5 +1,4 @@
 require('babel-polyfill');
-require('url-search-params-polyfill')
 const RingCentral = require('@rc-ex/core').default;
 const AuthorizeUriExtension = require('@rc-ex/authorize-uri').default;
 const localforage = require('localforage');
@@ -41,10 +40,15 @@ const showGreetings = async () => {
   alert(`Hello ${extInfo.name}!`);
 };
 
-const urlSearchParams = new URLSearchParams(
-  new URL(window.location.href).search
-);
-const code = urlSearchParams.get('code');
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+const code = getParameterByName('code');
 if(code == null) { // need to login
   login();
 } else { // already logged in
