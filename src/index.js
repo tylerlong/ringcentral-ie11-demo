@@ -10,6 +10,18 @@ const rc = new RingCentral({
 
 const redirectUri = window.location.origin + window.location.pathname;
 
+const login = () => {
+  const authorizeUriExtension = new AuthorizeUriExtension();
+  rc.installExtension(authorizeUriExtension);
+  authorizeUri = authorizeUriExtension.buildUri({
+    redirect_uri: redirectUri,
+    code_challenge_method: 'S256',
+  });
+  const codeVerifier = authorizeUriExtension.codeVerifier;
+  localforage.setItem('code_verifier', codeVerifier);
+  document.writeln(`<a href="${authorizeUri}">Login</a>`);
+}
+
 const authorize = async code => {
   await rc.authorize({
     code,
@@ -32,15 +44,7 @@ const urlSearchParams = new URLSearchParams(
 );
 const code = urlSearchParams.get('code');
 if(code == null) { // need to login
-  const authorizeUriExtension = new AuthorizeUriExtension();
-  rc.installExtension(authorizeUriExtension);
-  authorizeUri = authorizeUriExtension.buildUri({
-    redirect_uri: redirectUri,
-    code_challenge_method: 'S256',
-  });
-  const codeVerifier = authorizeUriExtension.codeVerifier;
-  localforage.setItem('code_verifier', codeVerifier);
-  document.writeln(`<a href="${authorizeUri}">Login</a>`);
+  login();
 } else { // already logged in
   (async () => {
     await authorize(code);
