@@ -1,3 +1,4 @@
+require('babel-polyfill');
 const RingCentral = require('@rc-ex/core').default;
 const AuthorizeUriExtension = require('@rc-ex/authorize-uri').default;
 const localforage = require('localforage');
