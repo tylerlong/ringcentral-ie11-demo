@@ -1,8 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const config = {
   mode: 'development',
   devtool: 'source-map',
+  output: {
+    path: path.resolve(__dirname, 'docs'),
+  },
   module: {
     rules: [
       {
